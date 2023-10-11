@@ -47,7 +47,7 @@ Interface::Interface(QWidget *parent)
     rankBtn->setText("Посчитать ранг");
     rankBtn->setFont(f);
     output = new QLabel(this);
-    output->setGeometry(width() / 2 - 100, 520, 200, 60);
+    output->setGeometry(width() / 2 - 175, 520, 350, 60);
     output->setFont(f);
     output->setStyleSheet("background-color: #D2D6D5");
     output->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
