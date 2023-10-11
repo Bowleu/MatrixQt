@@ -1,4 +1,5 @@
 #include "rational.h"
+#include <QDebug>
 
 Rational::Rational(int num, int div)
 {
@@ -20,23 +21,21 @@ Rational::Rational() {
 
 Rational::Rational(QString s) {
     QString number = "";
-    QString divid = "";
-    int i;
-    for (i = 0; i < s.length(); i++) {
+    for (int i = 0; i < s.length(); i++) {
         if (s[i] != '/')
             number += s[i];
-        else
-            break;
+        else{
+            num = number.toInt();
+            number = "";
+        }
     }
-    num = number.toInt();
     if (number == s) {
         div = 1;
+        num = number.toInt();
         return;
+    } else {
+        div = number.toInt();
     }
-    for (i; i < s.length(); i++) {
-        divid += s[i];
-    }
-    div = divid.toInt();
     if (div == 0)
         div = 1;
     if (div < 0) {
@@ -106,14 +105,14 @@ Rational Rational::operator *(int n) {
 
 bool Rational::operator != (int n) {
     if (div == 1 and num == n)
-        return 1;
-    return 0;
+        return 0;
+    return 1;
 }
 
 bool Rational::operator != (Rational r) {
     if (div == r.div and num == r.num)
-        return 1;
-    return 0;
+        return 0;
+    return 1;
 }
 
 std::ostream& operator << (std::ostream &st, Rational r) {

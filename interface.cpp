@@ -90,7 +90,7 @@ void Interface::transponate() {
     Matrix transponatedM(m.transponate());
     for (int i = 0; i < a; i++) {
         for (int j = 0; j < a; j++) {
-            values[i * 5 + j]->setText(transponatedM[i * 3 + j].toQString());
+            values[i * 5 + j]->setText(transponatedM[i * a + j].toQString());
         }
     }
 }
@@ -99,7 +99,8 @@ void Interface::determinant() {
     Matrix m(a);
     for (int i = 0; i < a; i++) {
         for (int j = 0; j < a; j++) {
-            m[i * a + j] = Number(values[i * 5 + j]->text());
+            QString temp = values[i * 5 + j]->text();
+            m[i * a + j] = Number(temp);
         }
     }
     QString s = "Определитель равен ";
@@ -110,7 +111,8 @@ void Interface::rank() {
     Matrix m(a);
     for (int i = 0; i < a; i++) {
         for (int j = 0; j < a; j++) {
-            m[i * a + j] = Number(values[i * 5 + j]->text());
+            QString temp = values[i * 5 + j]->text();
+            m[i * a + j] = Number(temp);
         }
     }
     int rank = m.rank();
